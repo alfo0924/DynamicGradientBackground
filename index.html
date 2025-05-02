@@ -8,7 +8,278 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 全局樣式 */
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .content-section {
+            min-height: 100vh;
+            display: none;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .active-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-info {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        /* 導航欄樣式 - 修改部分 */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            margin: 0 5px;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: #000;
+            background-color: #fff;
+            font-weight: bold;
+        }
+
+        /* 基本動態漸層背景 */
+        #basic-gradient {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* 進階動態漸層背景 */
+        #advanced-gradient {
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.8;
+        }
+
+        .blob1 {
+            width: 60%;
+            height: 60%;
+            background: linear-gradient(45deg, #ff0000, #ffa500);
+            top: 20%;
+            left: 10%;
+            animation: move1 20s ease-in-out infinite alternate;
+        }
+
+        .blob2 {
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(135deg, #ffff00, #008000);
+            top: 30%;
+            left: 40%;
+            animation: move2 25s ease-in-out infinite alternate;
+        }
+
+        .blob3 {
+            width: 45%;
+            height: 45%;
+            background: linear-gradient(225deg, #0000ff, #4b0082);
+            top: 10%;
+            left: 60%;
+            animation: move3 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes move1 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(20%, 15%) scale(1.2);
+            }
+        }
+
+        @keyframes move2 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(-15%, 10%) scale(1.1);
+            }
+        }
+
+        @keyframes move3 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(-5%, 25%) scale(1.15);
+            }
+        }
+
+        /* 互動式動態漸層背景 */
+        #interactive-gradient {
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .interactive-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.7;
+            transition: transform 0.3s ease-out;
+        }
+
+        .int-blob1 {
+            width: 70%;
+            height: 70%;
+            background: conic-gradient(#ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #9400d3, #ff0000);
+            top: 15%;
+            left: 15%;
+            animation: rotate1 30s linear infinite;
+        }
+
+        .int-blob2 {
+            width: 60%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.8), rgba(0, 255, 255, 0.8));
+            top: 20%;
+            left: 20%;
+            animation: pulse 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes rotate1 {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* 彩虹圓錐漸層背景 */
+        #rainbow-gradient {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rainbow-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                    #f00, #f50, #ff0, #0c0, #09d, #03a, #909, #f00
+            );
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        .blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(100px);
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 響應式調整 - 新增部分 */
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background: rgba(0, 0, 0, 0.95);
+                padding: 15px;
+                border-radius: 10px;
+                margin-top: 10px;
+            }
+
+            .nav-link.active {
+                color: #000;
+                background-color: #fff;
+            }
+        }
+    </style>
 </head>
 <body>
 <!-- 導航欄 -->
@@ -87,6 +358,60 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 導航欄切換功能
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // 移除所有活動類
+                navLinks.forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active-section');
+                });
+
+                // 添加活動類到當前項
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active-section');
+            });
+        });
+
+        // 互動式背景的滑鼠跟蹤功能
+        const interactiveSection = document.getElementById('interactive-gradient');
+        const blob1 = document.querySelector('.int-blob1');
+        const blob2 = document.querySelector('.int-blob2');
+
+        interactiveSection.addEventListener('mousemove', (e) => {
+            // 計算滑鼠位置相對於視窗的百分比
+            const rect = interactiveSection.getBoundingClientRect();
+            const mouseX = (e.clientX - rect.left) / rect.width;
+            const mouseY = (e.clientY - rect.top) / rect.height;
+
+            // 根據滑鼠位置移動漸層元素
+            blob1.style.transform = `translate(${mouseX * 10}%, ${mouseY * 10}%) rotate(${mouseX * 360}deg)`;
+            blob2.style.transform = `translate(${-mouseX * 15}%, ${-mouseY * 15}%) scale(${1 + mouseY * 0.5})`;
+
+            // 動態改變漸層顏色
+            const hue1 = mouseX * 360;
+            const hue2 = mouseY * 360;
+            blob2.style.background = `linear-gradient(135deg,
+                    hsl(${hue1}, 100%, 70%),
+                    hsl(${hue2}, 100%, 70%))`;
+        });
+
+        // 響應式導航欄顏色變化
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+        });
+    });
+</script>
 </body>
 </html>
