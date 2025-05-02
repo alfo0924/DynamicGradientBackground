@@ -30,18 +30,42 @@ body {
     z-index: 10;
 }
 
-/* 導航欄樣式 */
+/* 導航欄樣式 - 修改部分 */
 .navbar {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
 }
 
-.navbar-brand, .nav-link {
+.navbar-brand {
     color: white;
+    font-weight: bold;
+    transition: ease-in-out 0.4s;
+}
+.navbar-brand:hover{
+    color: rgba(18, 18, 18, 0.98);
+    font-weight: 900;
+    background-color: rgba(223, 223, 223, 0.94);
+    transition: ease-in-out 0.3s;
+    border: 1px solid rgba(223, 223, 223, 0.94);
 }
 
-.nav-link:hover, .nav-link.active {
-    color: #17a2b8;
+.nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+    color: #000;
+    background-color: #fff;
+    font-weight: bold;
 }
 
 /* 基本動態漸層背景 */
@@ -235,5 +259,20 @@ body {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+/* 響應式調整 - 新增部分 */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .nav-link.active {
+        color: #000;
+        background-color: #fff;
     }
 }
